@@ -15,6 +15,7 @@ import {
   ScrollView,
   View,
   Text,
+Button,
   StatusBar,
 } from 'react-native';
 
@@ -42,6 +43,21 @@ class App extends Component {
 });
 	}
 
+
+updateUserProfile() {
+		analytics.identify("336699", {
+  		email: "xyrtz@example.com",
+		name : "Sample User"
+});
+	}
+
+	pushEvent() {
+		analytics.track('Sample Event', {
+  		'name': 'Sword of Heracles',
+  		'eventId': '1234'
+});
+	}
+
 render(){
   return (
     <>
@@ -56,7 +72,13 @@ render(){
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
-          <View style={styles.body}>
+	<View style={styles.body}>
+		<View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Welcome To Clevertap</Text>
+              <Button title = "Click Here to Push Profile" onPress={ this.updateUserProfile }/>
+	      <Button title = "Click Here to Push Event" onPress={ this.pushEvent }/>
+          </View>
+          
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Step One</Text>
               <Text style={styles.sectionDescription}>
